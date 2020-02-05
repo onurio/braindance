@@ -10,7 +10,7 @@ export const AdminContainer=props=>{
     
 
     const auth =(password)=>{
-        if (password==='freestyle'){
+        if (password==='braindance'){
             setIsAuthenticaited(true);
         }
         else{
@@ -21,7 +21,7 @@ export const AdminContainer=props=>{
 
     switch(isAuthenticated){
         case true:
-            return <Admin fillPosts={props.fillPosts} posts={props.posts} db={props.db} logout={auth}/>
+            return <Admin fillProjects={props.fillProjects} projects={props.projects}  fillPosts={props.fillPosts} posts={props.posts} db={props.db} logout={auth}/>
         default:
             return <AdminLogin  login={auth}/>
     }

@@ -3,6 +3,8 @@ import { AdminActions } from './AdminActions';
 import { AddPost } from './AddPost';
 import {scrollToTop} from '../utils/utils';
 import {DeletePosts} from './DeletePosts';
+import { AddProject } from './AddProject';
+import { DeleteProjects } from './DeleteProject';
 
 
 
@@ -15,25 +17,32 @@ export const Admin =props=>{
     }
 
     switch(action){
-        case 'noticias':
+        case 'add_post':
             return(
-                <div className='flex_column'>
+                <div>
                     <AdminActions setAction={changeAction}/>
                     <AddPost setAction={changeAction}/>
                 </div>
             );
-        // case 'horarios':
-        //     return (
-        //         <div className='flex_column'>
-        //             <AdminActions setAction={changeAction}/>
-        //             <ChangeHours setAction={changeAction}/>
-        //         </div>
-        //     );
-        case 'noticias_borrar':
+        case 'delete_post':
             return (
-                <div className='flex_column'>
+                <div>
                     <AdminActions setAction={changeAction}/>
                     <DeletePosts fillPosts={props.fillPosts} posts={props.posts} setAction={changeAction}/>
+                </div>
+            );
+        case 'add_project':
+            return (
+                <div>
+                    <AdminActions setAction={changeAction}/>
+                    <AddProject setAction={changeAction}/>
+                </div>
+            );
+        case 'delete_project':
+            return (
+                <div>
+                    <AdminActions setAction={changeAction}/>
+                    <DeleteProjects fillProjects={props.fillProjects} posts={props.projects} setAction={changeAction}/>
                 </div>
             );
         default:

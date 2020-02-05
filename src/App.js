@@ -41,6 +41,7 @@ export {
 
 function App(props) {
   const [posts,setPosts] = useState(undefined);
+  const [projects,setProjects] = useState(undefined);
 
 
   useEffect(()=>{
@@ -55,6 +56,7 @@ function App(props) {
 
   useEffect(()=>{
     fillPosts();
+    fillProjects();
   },[]);
 
 
@@ -76,20 +78,40 @@ function App(props) {
     })
     .catch(err => {
         console.log('Error getting documents', err);
-    });}
+  });}
+
+  const fillProjects =()=>{
+    let projectsObject = {};
+    let projectsRef = db.collection('projects');
+    projectsRef.get()
+    .then(snapshot => {
+        snapshot.forEach(doc => {
+        // list.push(<PostLink key={doc.id} id={doc.id} url={doc.data().url} text={doc.data().text} />);
+        projectsObject[doc.id] = {
+          audioUrl: doc.data().audioUrl,
+          imgUrl: doc.data().imgUrl,
+          name: doc.data().name,
+          link: doc.data().link
+        }
+        });
+        setProjects(projectsObject);
+    })
+    .catch(err => {
+        console.log('Error getting documents', err);
+  });}
 
   return (
     <div className="App">
         <Navbar isMobile={isMobile}/>
         <Switch>
             <Route path="/" exact>
-              <Home/>
+              <Home  projects={projects} />
             </Route>
             <Route path="/contact" exact>
               <Contact/>
             </Route>
             <Route path="/admin" exact>
-              <AdminContainer fillPosts={fillPosts} posts={posts}  />
+              <AdminContainer fillProjects={fillProjects} projects={projects} fillPosts={fillPosts} posts={posts}  />
             </Route>
         </Switch>
         {/* <Footer/> */}

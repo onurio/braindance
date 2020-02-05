@@ -29,3 +29,9 @@
 .full {
   height: calc(100% - 10vh);
 }
+
+
+.link_decoration_none{
+  color: white;
+  text-decoration: none;
+}

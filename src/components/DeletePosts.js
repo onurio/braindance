@@ -8,7 +8,7 @@ export const DeletePosts=props=>{
     const [postList,setPostList] = useState('Loading');
     
     const deletPost=(id)=>{
-        if (window.confirm('Borrar post'+id+'?') ){
+        if (window.confirm('Delete post'+id+'?') ){
             db.collection("posts").doc(id).delete().then(function() {
                 console.log("Document successfully deleted!");
                 props.fillPosts();
@@ -24,9 +24,9 @@ export const DeletePosts=props=>{
             let listNew = Object.keys(props.posts).map((postId)=>{
                 return (
                     <tr key={postId}>
-                        <td style={{border:'1px solid white',color:'white'}}>{posts[postId].header}</td>
-                        <td style={{border:'1px solid white',color:'white'}}>{postId}</td>
-                        <td style={{border:'1px solid white',color:'white'}}>
+                        <td style={{border:'1px solid black'}}>{posts[postId].header}</td>
+                        <td style={{border:'1px solid black'}}>{postId}</td>
+                        <td style={{border:'1px solid black'}}>
                             <button onClick={e=>deletPost(postId)}><img src={trash} width='25px'  alt="delete"/></button>
                         </td>
                     </tr>
@@ -38,13 +38,13 @@ export const DeletePosts=props=>{
     },[props.posts])
 
     return(
-        <div className='column center'>
-            <table style={{width: '70vw',border:'1px solid white',color:'white'}}>
+        <div className='center column'>
+            <table style={{width: '70vw',border:'1px solid black'}}>
                 <thead>
                     <tr key={'nothing'}>
                         <th>Post Name</th>
                         <th>Post Id</th>
-                        <th>Borrar</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>{postList}</tbody>  
